@@ -7,9 +7,11 @@ using Core.Autentication;
 using Core.Config;
 using Core.Entities.Catalog;
 using Core.Entities.Notifications;
+using Core.Entities.Tweet;
 using EntityFrameworkCore;
 using EntityFrameworkCore.Repository;
 using EntityFrameworkCore.Repository.Notification;
+using EntityFrameworkCore.Repository.Tweet;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -140,12 +142,22 @@ builder.Services.AddTransient<IRepository<int, Status>, Repository<int, Status>>
 
 builder.Services.AddSingleton<IConfiguration>(configuration);
 
+
+//builder.Services.AddTransient<INotificationService, NotificationService>();
+
+builder.Services.AddTransient<ITweetRepository, TweetRepository>();
+builder.Services.AddTransient<IRepository<int, Tweet>, Repository<int, Tweet>>();
+builder.Services.AddTransient<IRepository<int, Comment>, Repository<int, Comment>>();
+
+
+// Notification Service
 builder.Services.AddTransient<INotificationService, NotificationService>();
 builder.Services.AddTransient<INotificationRepository, NotificationRepository>();
 builder.Services.AddTransient<IRepository<int, Notification>, Repository<int, Notification>>();
 builder.Services.AddTransient<INotificationTypeService, NotificationTypeService>();
 builder.Services.AddTransient<IRepository<int, NotificationType>, Repository<int, NotificationType>>();
 
+// Other Service
 builder.Services.AddTransient<IOtherService, OtherService>();
 builder.Services.AddTransient<IRepository<int, UserType>, Repository<int, UserType>>();
 

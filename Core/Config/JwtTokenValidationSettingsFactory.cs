@@ -1,8 +1,4 @@
-﻿using Microsoft.Extensions.Options;
-using System;
-using System.Text;
-
-namespace Core.Config
+﻿namespace Core.Config
 {
     public class JwtTokenValidationSettings
     {
